@@ -128,7 +128,9 @@ function onKeyPress(event) {
         position = i;
         if (position >= galleryItems.length - 1) {
           position = 0;
-          return refs.originalImage.src = galleryItems[position].original;
+          refs.originalImage.src = galleryItems[position].original;
+          refs.originalImage.alt = galleryItems[position].description;
+          return;
         }
         refs.originalImage.src = galleryItems[position + 1].original;
         refs.originalImage.alt = galleryItems[position + 1].description;
@@ -143,7 +145,9 @@ function onKeyPress(event) {
         position = i;
         if (position < 1) {
           position = galleryItems.length - 1;
-          return refs.originalImage.src = galleryItems[position].original;
+          refs.originalImage.src = galleryItems[position].original;
+          refs.originalImage.alt = galleryItems[position].description;
+          return;
         } 
         refs.originalImage.src = galleryItems[position - 1].original;
         refs.originalImage.alt = galleryItems[position - 1].description;
