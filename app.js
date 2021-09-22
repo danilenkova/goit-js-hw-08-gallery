@@ -101,7 +101,6 @@ function onOpenModal(event) {
   refs.lightbox.classList.add('is-open');
   refs.originalImage.src = event.target.getAttribute('data-source');
   refs.originalImage.alt = event.target.alt;
-  refs.originalImage.dataset.index = event.target.getAttribute('data-index');
 }
 
 
@@ -121,5 +120,35 @@ function onBackDropClick(event) {
 function onKeyPress(event) {
   if (event.code === 'Escape') {
     onCloseModal();
+  }
+  if (event.code === 'ArrowRight') {
+    let position = 0;
+    for (let i = 0; i <= galleryItems.length - 1; i++) {
+      if (galleryItems[i].original === refs.originalImage.src) {
+        position = i;
+        if (position >= galleryItems.length - 1) {
+          position = 0;
+          return refs.originalImage.src = galleryItems[position].original;
+        }
+        refs.originalImage.src = galleryItems[position + 1].original;
+        refs.originalImage.alt = galleryItems[position + 1].description;
+        return;
+      }
+    }
+  }
+  if (event.code === 'ArrowLeft') {
+    let position = 0;
+    for (let i = 0; i <= galleryItems.length - 1; i++) {
+      if (galleryItems[i].original === refs.originalImage.src) {
+        position = i;
+        if (position < 1) {
+          position = galleryItems.length - 1;
+          return refs.originalImage.src = galleryItems[position].original;
+        } 
+        refs.originalImage.src = galleryItems[position - 1].original;
+        refs.originalImage.alt = galleryItems[position - 1].description;
+        return;
+      }
+    }
   }
 }
